@@ -10,6 +10,6 @@ public class DemoController {
 
     @GetMapping("/sasso")
     public String sasso() {
-        return"SASSO BEKASSO";
+        return"SASSO BEKASSO Manga";
     }
 }
