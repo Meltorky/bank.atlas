@@ -1,6 +1,8 @@
 package atlas.bank.entities;
 
+import atlas.bank.enums.AccountStatus;
 import atlas.bank.enums.AccountType;
+import atlas.bank.enums.Currency;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,8 +37,9 @@ public class Account {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "currency", nullable = false, length = 3)
-    private String currency = "EGP";
+    private Currency currency = Currency.EGP;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
