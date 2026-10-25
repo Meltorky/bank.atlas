@@ -52,3 +52,6 @@ public class Customer {
     @Column(name = "signature_copy_url", nullable = false)
     private String signatureCopy ;
 }
+
+// id [https://img.magnific.com/premium-vector/flat-man-driver-license-plastic-card-template-id-card-vector-illustration_589019-3455.jpg]
+// sig[https://img.magnific.com/premium-vector/manual-signature-documents-white-background-hand-drawn-calligraphy-lettering-vector-illustration_81863-11792.jpg?semt=ais_hybrid&w=740&q=80]
