@@ -13,12 +13,19 @@ public class CustomResponseException extends RuntimeException {
     }
 
 
-    public static CustomResponseException resourceNotFound101(String message) {
+    public static CustomResponseException resourceNotFound(String message) {
         return new CustomResponseException(404, message);
     }
 
-    public static CustomResponseException resourceMisMatch101(String message) {
+    public static CustomResponseException resourceMisMatch(String message) {
         return new CustomResponseException(407, message);
     }
 
+    public static CustomResponseException resourceDuplicateData(String message) {
+        return new CustomResponseException(400, message);
+    }
+
+    public static CustomResponseException serverDown(String message) {
+        return new CustomResponseException(500, message);
+    }
 }
