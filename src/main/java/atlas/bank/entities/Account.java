@@ -28,11 +28,11 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "account_type", nullable = false, length = 20)
-    private AccountType accountType;
+    private AccountType accountType = AccountType.CHECKING;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
-    private AccountStatus status;
+    private AccountStatus status = AccountStatus.ACTIVE;
 
     @Column(name = "balance", nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
