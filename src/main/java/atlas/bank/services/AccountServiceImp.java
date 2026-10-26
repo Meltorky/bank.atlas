@@ -2,6 +2,7 @@
 package atlas.bank.services;
 
 import atlas.bank.DTOs.AccountCreateDTO;
+import atlas.bank.abstracts.AccountService;
 import atlas.bank.entities.Account;
 import atlas.bank.entities.Customer;
 import atlas.bank.repositories.AccountRepo;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
 @Service
-public class AccountServiceImp {
+public class AccountServiceImp implements AccountService {
 
     private final AccountRepo accountRepo;
     private final CustomerRepo customerRepo;

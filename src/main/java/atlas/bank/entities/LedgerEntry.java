@@ -1,5 +1,6 @@
 package atlas.bank.entities;
 
+import atlas.bank.enums.LedgerEntryType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,17 +24,16 @@ public class LedgerEntry {
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "entry_type", nullable = false)
+    private LedgerEntryType entryType;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    @JsonProperty("customerId")
-    private Customer customer;
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "transaction_id", nullable = false)
-    @JsonProperty("transactionId")
     private Transaction transaction;
 
-    // overload the get methods
-    public UUID getCustomer() {return customer.getId();}
-    public UUID getTransaction() {return transaction.getId();}
 }

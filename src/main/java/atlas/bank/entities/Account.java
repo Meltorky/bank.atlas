@@ -42,11 +42,6 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
-    @JsonProperty("customerId")
     private Customer customer;
 
-    // overload to get the customer id only
-    public UUID getCustomer() {
-        return customer.getId();
-    }
 }

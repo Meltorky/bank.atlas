@@ -2,6 +2,7 @@ package atlas.bank.entities;
 
 import atlas.bank.enums.Currency;
 import atlas.bank.enums.TransactionStatus;
+import atlas.bank.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,10 @@ public class Transaction {
     @Column(name = "transaction_status", nullable = false)
     private TransactionStatus transactionStatus;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "transaction_type", nullable = false)
+    private TransactionType transactionType;
+
     @OneToMany(mappedBy = "transaction")
-    private List<LedgerEntry> ledgerEntryList = new ArrayList<>();
+    private List<LedgerEntry> ledgerEntries= new ArrayList<>();
 }

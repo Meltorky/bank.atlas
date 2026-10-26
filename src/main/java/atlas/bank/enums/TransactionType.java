@@ -1,6 +1,8 @@
 package atlas.bank.enums;
 
 public enum TransactionType {
-    EXTERNAL,
-    INTERNAL
+    DEPOSIT,
+    WITHDRAWAL,
+    INTERNAL_TRANSFER,
+    EXTERNAL_TRANSFER
 }

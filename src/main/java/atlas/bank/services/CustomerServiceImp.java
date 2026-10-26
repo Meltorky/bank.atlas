@@ -2,6 +2,7 @@ package atlas.bank.services;
 
 import atlas.bank.DTOs.CustomerCreateDTO;
 import atlas.bank.DTOs.CustomerUpdateDTO;
+import atlas.bank.abstracts.CustomerService;
 import atlas.bank.entities.Customer;
 import atlas.bank.integration.Image.ImageStorage;
 import atlas.bank.repositories.CustomerRepo;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class CustomerServiceImp {
+public class CustomerServiceImp implements CustomerService {
 
     private final CustomerRepo customerRepo;
     private final ImageStorage imageStorageAws;
@@ -97,15 +98,15 @@ public class CustomerServiceImp {
 
 
     // delete customer
-    public void deleteCustomer(UUID id) {
-
-        Customer customer = customerRepo.findById(id)
-                .orElseThrow(() ->
-                        CustomResponseException.resourceNotFound(
-                                "Customer not found!"
-                        )
-                );
-
-        customerRepo.delete(customer);
-    }
+//    public void deleteCustomer(UUID id) {
+//
+//        Customer customer = customerRepo.findById(id)
+//                .orElseThrow(() ->
+//                        CustomResponseException.resourceNotFound(
+//                                "Customer not found!"
+//                        )
+//                );
+//
+//        customerRepo.delete(customer);
+//    }
 }
