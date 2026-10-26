@@ -5,7 +5,7 @@ import atlas.bank.DTOs.CustomerUpdateDTO;
 import atlas.bank.entities.Customer;
 import atlas.bank.integration.Image.ImageStorage;
 import atlas.bank.repositories.CustomerRepo;
-import atlas.bank.shared.HttpRequest.CustomResponseException;
+import atlas.bank.shared.httpRequests.CustomResponseException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 

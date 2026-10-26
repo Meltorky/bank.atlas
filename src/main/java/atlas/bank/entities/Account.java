@@ -19,12 +19,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {
-    @Id
-    @UuidGenerator
-    private UUID id;
 
-    @Column(name = "account_number", nullable = false, unique = true,length = 15)
-    private String accountNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "number")
+    private Long number;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "account_type", nullable = false, length = 20)

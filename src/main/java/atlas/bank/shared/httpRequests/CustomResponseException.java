@@ -1,4 +1,4 @@
-package atlas.bank.shared.HttpRequest;
+package atlas.bank.shared.httpRequests;
 
 import lombok.Getter;
 
