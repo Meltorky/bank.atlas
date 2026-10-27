@@ -3,15 +3,12 @@ package atlas.bank.entities;
 import atlas.bank.enums.AccountStatus;
 import atlas.bank.enums.AccountType;
 import atlas.bank.enums.Currency;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Table(name = "account")
