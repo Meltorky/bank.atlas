@@ -8,8 +8,4 @@ public interface ProfitCalculationStrategy {
             BigDecimal principal,
             BigDecimal rate
     );
-
-    BigDecimal calculateProfit(
-            BigDecimal principal,
-            BigDecimal rate);
 }

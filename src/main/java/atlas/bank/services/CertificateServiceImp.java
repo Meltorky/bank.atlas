@@ -10,6 +10,8 @@ import atlas.bank.repositories.AccountRepo;
 import atlas.bank.repositories.CertificateRepo;
 import atlas.bank.repositories.CustomerRepo;
 import atlas.bank.shared.httpRequests.CustomResponseException;
+import atlas.bank.strategy.ProfitCalculation.ProfitCalculationStrategy;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +22,8 @@ import java.util.Objects;
 @Service
 public class CertificateServiceImp {
 
-    private static final BigDecimal MONTHLY_RATE =
-            new BigDecimal("0.01");
+    private final ProfitCalculationStrategy profitCalculationStrategy;
+    private static final BigDecimal MONTHLY_RATE = new BigDecimal("0.01");
 
     private static final int TERM_YEARS = 3;
 
@@ -32,11 +34,14 @@ public class CertificateServiceImp {
     public CertificateServiceImp(
             CertificateRepo certificateRepo,
             CustomerRepo customerRepo,
-            AccountRepo accountRepo) {
+            AccountRepo accountRepo,
+            @Qualifier("certificateProfitStrategy")
+            ProfitCalculationStrategy profitCalculationStrategy) {
 
         this.certificateRepo = certificateRepo;
         this.customerRepo = customerRepo;
         this.accountRepo = accountRepo;
+        this.profitCalculationStrategy = profitCalculationStrategy;
     }
 
     @Transactional
