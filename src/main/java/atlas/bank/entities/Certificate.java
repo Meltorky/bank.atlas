@@ -38,6 +38,9 @@ public class Certificate {
     @Column(nullable = false, length = 20)
     private CertificateStatus status = CertificateStatus.ACTIVE;
 
+    @Column(name = "last_profit_paid_date")
+    private LocalDate lastProfitPaidDate;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;

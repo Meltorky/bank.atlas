@@ -10,8 +10,6 @@ import atlas.bank.repositories.AccountRepo;
 import atlas.bank.repositories.CertificateRepo;
 import atlas.bank.repositories.CustomerRepo;
 import atlas.bank.shared.httpRequests.CustomResponseException;
-import atlas.bank.strategy.ProfitCalculation.ProfitCalculationStrategy;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +20,8 @@ import java.util.Objects;
 @Service
 public class CertificateServiceImp {
 
-    private final ProfitCalculationStrategy profitCalculationStrategy;
-    private static final BigDecimal MONTHLY_RATE = new BigDecimal("0.01");
+    private static final BigDecimal MONTHLY_RATE =
+            new BigDecimal("0.01");
 
     private static final int TERM_YEARS = 3;
 
@@ -34,18 +32,22 @@ public class CertificateServiceImp {
     public CertificateServiceImp(
             CertificateRepo certificateRepo,
             CustomerRepo customerRepo,
-            AccountRepo accountRepo,
-            @Qualifier("certificateProfitStrategy")
-            ProfitCalculationStrategy profitCalculationStrategy) {
+            AccountRepo accountRepo) {
 
         this.certificateRepo = certificateRepo;
         this.customerRepo = customerRepo;
         this.accountRepo = accountRepo;
-        this.profitCalculationStrategy = profitCalculationStrategy;
     }
 
     @Transactional
     public Certificate createCertificate(CertificateCreateDTO dto) {
+
+        if (dto.principal() == null ||
+                dto.principal().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException(
+                    "Principal must be greater than zero!"
+            );
+        }
 
         Customer customer = customerRepo.findById(dto.customerId())
                 .orElseThrow(() ->
@@ -66,7 +68,6 @@ public class CertificateServiceImp {
 
         if (checkingAccount.getBalance()
                 .compareTo(dto.principal()) < 0) {
-
             throw new IllegalStateException(
                     "Insufficient balance!"
             );
@@ -80,7 +81,6 @@ public class CertificateServiceImp {
         LocalDate startDate = LocalDate.now();
 
         Certificate certificate = new Certificate();
-
         certificate.setPrincipal(dto.principal());
         certificate.setMonthlyRate(MONTHLY_RATE);
         certificate.setStartDate(startDate);
@@ -101,21 +101,21 @@ public class CertificateServiceImp {
             Account account,
             Customer customer) {
 
-        if (!Objects.equals(account.getCustomer().getId(), customer.getId())) {
+        if (!Objects.equals(
+                account.getCustomer().getId(),
+                customer.getId())) {
             throw new IllegalStateException(
                     "This account does not belong to the customer!"
             );
         }
 
         if (account.getAccountType() != AccountType.CHECKING) {
-
             throw new IllegalStateException(
                     "Certificate must be linked to a checking account!"
             );
         }
 
         if (account.getStatus() != AccountStatus.ACTIVE) {
-
             throw new IllegalStateException(
                     "Checking account must be active!"
             );

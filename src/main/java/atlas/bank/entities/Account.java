@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "account")
@@ -32,6 +33,9 @@ public class Account {
 
     @Column(name = "balance", nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
+
+    @Column(name = "last_profit_paid_date")
+    private LocalDate lastProfitPaidDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "currency", nullable = false, length = 3)
