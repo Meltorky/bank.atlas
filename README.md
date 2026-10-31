@@ -8,6 +8,7 @@ Example: customer purchases something for EGP 500.
 6. Create a completed transaction.
 7. Create a DEBIT LedgerEntry for EGP 500.
 8. Publish a purchase-completed event.
+
 Credit-card purchase
 Example: customer purchases something for EGP 500.
 1. Find the credit card.
