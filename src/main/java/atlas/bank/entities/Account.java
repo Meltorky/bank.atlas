@@ -5,7 +5,7 @@ import atlas.bank.enums.AccountType;
 import atlas.bank.enums.Currency;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
@@ -13,7 +13,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "account")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {

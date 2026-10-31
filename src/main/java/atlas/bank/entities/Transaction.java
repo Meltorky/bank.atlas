@@ -4,9 +4,7 @@ import atlas.bank.enums.Currency;
 import atlas.bank.enums.TransactionStatus;
 import atlas.bank.enums.TransactionType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
@@ -17,7 +15,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "transaction")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Transaction {
