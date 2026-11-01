@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Service
-public class CertificateServiceImp {
+public class CertificateServiceImp implements atlas.bank.abstracts.CertificateService {
 
     private static final BigDecimal MONTHLY_RATE =
             new BigDecimal("0.01");
@@ -40,6 +40,7 @@ public class CertificateServiceImp {
     }
 
     @Transactional
+    @Override
     public Certificate createCertificate(CertificateCreateDTO dto) {
 
         if (dto.principal() == null ||

@@ -1,5 +1,6 @@
 package atlas.bank.services;
 
+import atlas.bank.abstracts.MonthlyProfitService;
 import atlas.bank.entities.Account;
 import atlas.bank.entities.Certificate;
 import atlas.bank.entities.LedgerEntry;
@@ -26,7 +27,7 @@ import java.time.YearMonth;
 import java.time.ZoneId;
 
 @Service
-public class MonthlyProfitServiceImp {
+public class MonthlyProfitServiceImp implements MonthlyProfitService {
 
     private final AccountRepo accountRepo;
     private final CertificateRepo certificateRepo;
@@ -55,6 +56,7 @@ public class MonthlyProfitServiceImp {
     }
 
     @Transactional
+    @Override
     public void processMonthlyProfits() {
 
         YearMonth month = YearMonth.now(ZoneId.of("Africa/Cairo"));

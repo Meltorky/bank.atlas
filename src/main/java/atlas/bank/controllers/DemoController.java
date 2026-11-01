@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/demo")
+@RequestMapping("/api/v1/demo")
 public class DemoController {
 
     @GetMapping("/sasso")
     public String sasso() {
-        return"This is a Testing Endpoint !!";
+        return "This is a Testing Endpoint !!";
     }
 }

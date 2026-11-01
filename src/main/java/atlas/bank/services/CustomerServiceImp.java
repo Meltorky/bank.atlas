@@ -95,18 +95,4 @@ public class CustomerServiceImp implements CustomerService {
 
         return customerRepo.save(customer);
     }
-
-
-    // delete customer
-//    public void deleteCustomer(UUID id) {
-//
-//        Customer customer = customerRepo.findById(id)
-//                .orElseThrow(() ->
-//                        CustomResponseException.resourceNotFound(
-//                                "Customer not found!"
-//                        )
-//                );
-//
-//        customerRepo.delete(customer);
-//    }
 }

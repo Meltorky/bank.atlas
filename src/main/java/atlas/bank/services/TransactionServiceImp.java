@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
-public class TransactionServiceImp {
+public class TransactionServiceImp implements atlas.bank.abstracts.TransactionService {
 
     private final TransactionRepo transactionRepo;
     private final LedgerEntryRepo ledgerEntryRepo;
@@ -41,6 +41,7 @@ public class TransactionServiceImp {
     // =========================
 
     @Transactional
+    @Override
     public Transaction deposit(TransactionRequestDTO dto) {
 
         validateAmount(dto.amount());
@@ -77,6 +78,7 @@ public class TransactionServiceImp {
     // =========================
 
     @Transactional
+    @Override
     public Transaction withdraw(TransactionRequestDTO dto) {
 
         validateAmount(dto.amount());
@@ -115,6 +117,7 @@ public class TransactionServiceImp {
     // =========================
 
     @Transactional
+    @Override
     public Transaction internalTransfer(TransactionRequestDTO dto) {
 
         validateAmount(dto.amount());
@@ -185,6 +188,7 @@ public class TransactionServiceImp {
     // =========================
 
     @Transactional
+    @Override
     public Transaction externalTransfer(TransactionRequestDTO dto) {
 
         validateAmount(dto.amount());
